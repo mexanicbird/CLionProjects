@@ -1,5 +1,5 @@
-    /* Автор: Куликов Алексей */
-    /*  Среда разработки: jetBrains Clion */
+/* Автор: Куликов Алексей */
+/*  Среда разработки: jetBrains Clion */
 
 /* библиотеки */
 #include <stdio.h>
@@ -9,6 +9,21 @@
 int var_1;
 int var_2;
 
+/* первая функция */
+
+void voltage ()
+{
+    float Uo = 1;
+    float R1 = 1;
+    float R2 = 1;
+    float Ui;
+
+    Ui = Uo / (R1 / (R2 + R1));
+
+    printf("Значение Ui: ");
+    printf("%.1f\n", Ui);
+
+}
 /* основной цикл */
 int main() {
 
@@ -18,6 +33,9 @@ int main() {
     var_2 = pow(var_1, 2);
     printf("Возводим в квадрат и получаем: ");
     printf("%d\n", var_2);
+
+    /* вызываем функции */
+    voltage ();
     return 0;
 }
 
