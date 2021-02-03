@@ -16,7 +16,6 @@ void voltage ()
     float R1;
     float R2;
     float Ui;
-
     /* собираем аргументы */
     printf("\n");
     printf("первая задача\n");
