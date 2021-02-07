@@ -6,3 +6,9 @@
 
 #IncludeRegexTransform: 
 
+/Users/alex/CLionProjects/Lesson_003_1/main.c
+stdio.h
+-
+math.h
+-
+
