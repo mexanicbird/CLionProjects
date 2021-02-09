@@ -3,14 +3,16 @@
 
 /* библиотеки */
 #include <stdio.h>
-#include <math.h>
+
+/* определение */
+#define ARRAY_LENGTH 10
 
 /* Переменные */
 double root_1;
 double root_2;
 double * x1 = &root_1;
 double * x2 = &root_2;
-
+int array_1 [ARRAY_LENGTH] = {2, 5, 8, 12, 44, 111, 50, 34, 70, 60};
 
 /* Упражнение_1 */
 int calcSquareEq(int a, int b, int c, double *x1, double *x2)
@@ -36,6 +38,7 @@ int calcSquareEq(int a, int b, int c, double *x1, double *x2)
             *x1 = (double)(-b + dsc) / (2 * a);
             *x2 = (double)(-b - dsc) / (2 * a);
             printf("Корни уравнения: х1 = %.1f, х2 = %.1f ", *x1, *x2);
+            printf("\n");
             return 1;
         }
         else
@@ -43,19 +46,35 @@ int calcSquareEq(int a, int b, int c, double *x1, double *x2)
             printf("что-то пошло не так... ");
             return -1;
         }
-
-
-
-
-    return 0;
 }
 
 /* Упражнение_2 */
-int exercise_2 ()
-{
+int func_array (int *arr) {
     printf("Задание_2 ");
     printf("\n");
-    return 0;
+    int i;
+    int j = 0;
+    for (i = 0; i < ARRAY_LENGTH; i++) {
+        if (arr[i] % 2 == 1) {
+            j++;
+        }
+    }
+    if (j > 0) {
+        for (i = 0; i < ARRAY_LENGTH; i++) {
+            if (arr[i] % 2 == 1){
+                arr[i] = arr[i] * 2;
+            }
+        }
+        printf("Массив с учетом удвоения нечетных чисел: ");
+        for (i = 0; i < ARRAY_LENGTH; i++)
+        {
+            printf("%d, ", arr[i]);
+        }
+        printf("\n");
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 /* Упражнение_3 */
@@ -67,10 +86,10 @@ int exercise_3 ()
 }
 
 int main() {
-    printf( ", возвращаем значение: %d", calcSquareEq(2, 11, 7, x1, x2));
+    printf( "Возвращаем значение задания №1: %d", calcSquareEq(2, 11, 7, x1, x2));
     printf("\n\n");
-    exercise_2 ();
-    printf("\n");
+    printf( "Возвращаем значение задания №2: %d", func_array (array_1));
+    printf("\n\n");
     exercise_3 ();
     printf("\n");
     return 0;
