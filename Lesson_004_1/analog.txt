@@ -1,0 +1,166 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+// Задание 1
+int sch(int *px)
+{
+	int c = 0;
+	do
+	{
+		*px /= 2;
+		c++;
+	}
+	while(*px != 0);
+	return c;
+}
+
+void boolArr(int *pf, int *px)
+{
+	int i;
+	char parr[*pf];
+	for(i=*pf; i>0 ;i--)
+	{
+		if(*px % 2 == 0)
+			parr[i-1] = 0;
+		if(*px % 2 == 1)
+			parr[i-1] = 1;
+		*px /= 2;
+	}
+	for (i=0;i<*pf;i++)
+	{
+		printf("%lu", parr[i]);
+	}
+}
+
+
+// Задание 2
+
+struct pryamougolnik
+{
+	int dlina;
+	int shirina;
+	int perimetr;
+	int ploschad;
+};
+
+typedef struct pryamougolnik Prm;
+
+void insPar(Prm *dl, Prm *shir)
+{
+	puts("Vvedite dlinu pryamougol'nika: ");
+	scanf("%d", &dl->dlina);
+	puts("Vvedite shirinu pryamougol'nika: ");
+	scanf("%d", &shir->shirina);
+}
+
+void printPrm(Prm dl, Prm shir, Prm perim, Prm pl)
+{
+	printf("Razmery pryamougol'nika \n");
+	printf("dlina: %d, shirina: %d, ", dl.dlina, shir.shirina);
+	printf("perimetr: %d, ploschad': %d.", perim.perimetr, pl.ploschad);
+}
+
+void perimPl(Prm dl, Prm shir, Prm* perim, Prm *pl)
+{
+	perim->perimetr = 2 * (dl.dlina + shir.shirina);
+	pl->ploschad = dl.dlina * shir.shirina;
+}
+
+
+// Задание 3
+
+struct point1
+{
+	int x;
+	int y;
+};
+typedef struct point1 Point;
+
+struct line
+{
+	Point;
+	int dlinal;
+};
+
+typedef struct line Line;
+
+void insPar1(Point *x1, Point *y1, Point *x2, Point *y2)
+{
+	printf("Vvedite koordinaty pervoy tochki:\nx = ");
+	scanf("%d", &x1->x);
+	printf("y = ");
+	scanf("%d", &y1->y);
+	printf("Vvedite koordinaty vtoroy tochki:\nx = ");
+	scanf("%d", &x2->x);
+	printf("y = ");
+	scanf("%d", &y2->y);
+}
+
+float lineDlina(Point *x1, Point *y1, Point *x2, Point *y2)
+{
+	int xo, yo;
+	float g;
+	if ((x1->x <0)&(x2->x >0))
+		xo = -x1->x + x2->x;
+	if ((x2->x <0)&(x2->x >0))
+		xo = -x2->x + x1->x;
+	if ((x1->x <0)&(x2->x <0))
+		xo = x1->x - x2->x;
+	if ((x1->x >0)&(x2->x >0))
+		xo = x1->x - x2->x;
+	if ((y1->y <0)&(y2->y >0))
+		yo = -y1->y + y2->y;
+	if ((y2->y <0)&(y2->y >0))
+		yo = -y2->y + y1->y;
+	if ((y1->y <0)&(y2->y <0))
+		yo = y1->y - y2->y;
+	if ((y1->y >0)&(y2->y >0))
+		yo = y1->y - y2->y;
+	g = sqrt(pow(xo,2)+pow(yo,2));
+	return g;
+}
+
+int main(int argc, char *argv[])
+{
+
+// Задание 1
+	int i, x, z, f;
+	puts("Vvedite celoe pologitel'noe chislo: ");
+	scanf("%d", &x);
+	z = x;
+	f = sch(&x);
+	printf("Chislo %d v dvoichnoj forme : ",z);
+	char parr[f];
+	boolArr(&f, &z);
+	printf("\n\n");
+
+// Задание 2
+
+	Prm dl, shir, perim, pl;
+	dl.dlina = 0;
+	shir.shirina = 0;
+	perim.perimetr = 0;
+	pl.ploschad = 0;
+	insPar(&dl,&shir);
+	perimPl(dl, shir, &perim, &pl);
+	printPrm(dl, shir, perim, pl);
+	printf("\n\n");
+
+// Задание 3
+
+	float c;
+	Line dlinal;
+	dlinal.dlinal = 0;
+	Point x1, y1, x2, y2;
+	x1.x = 0;
+	y1.y = 0;
+	x2.x = 0;
+	y2.y = 0;
+	insPar1(&x1,&y1,&x2,&y2);
+	printf("\n Vvedenye koordinaty p1( %d; %d), p2 ( %d; %d)\n", x1.x, y1.y, x2.x, y2.y);
+	c = lineDlina(&x1, &y1, &x2, &y2);
+	printf("Dlina linii sostavlyaet : %0.2f", c);
+	return 0;
+}

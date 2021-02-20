@@ -99,6 +99,7 @@ int main() {
     printf("Вторая точка имеет координаты: x = %d, y = %d", l->p2.x, l->p2.y);
     printf("\n");
     printf("Длина линии: %lf\n", l->length);
+    free(l);
     return 0;
 }
 
