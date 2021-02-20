@@ -9,4 +9,10 @@
 /Users/alex/CLionProjects/Lesson_004_1/main.c
 stdio.h
 -
+string.h
+-
+stdlib.h
+-
+math.h
+-
 
